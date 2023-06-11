@@ -1,19 +1,23 @@
 <template lang="">
-  <section @click="handleClick" :class="[completed ? 'bg-green-500' : 'bg-red-500']">
+  <section @click="handleClick" :class="[completed.value ? 'bg-green-500' : 'bg-red-500']">
     <h3 class="text-2xl text-center">{{ title }}</h3>
     <p>{{ text }}</p>
   </section>
 </template>
 <script>
-import { getCurrentInstance } from 'vue'
+import { ref, getCurrentInstance, onUpdated } from 'vue'
+
 export default {
   props: ['todo'],
   setup(props) {
+    const { id, title, text } = props.todo
     const instance = getCurrentInstance()
-    const { id, title, completed, text } = props.todo
+    const completed = ref(props.todo.completed)
     function handleClick(e) {
-      instance.emit('completed-toogle', id)
+      instance.emit('completed-toogle', props.todo)
     }
+
+
 
     return { id, title, completed, text, handleClick }
   }

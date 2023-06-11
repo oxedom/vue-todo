@@ -1,7 +1,10 @@
 <template lang="">
   <div>
     <Navbar />
+
+    <AddTodo/>
     <main v-for="todo in todos" class="grid grid-cols-3 justify-items-center">
+        
       <Todo @completed-toogle="handleToogle" :key="todo.id" v-bind="{ todo }" />
     </main>
   </div>
@@ -10,10 +13,10 @@
 import { ref } from 'vue'
 import Navbar from '../components/Navbar.vue'
 import Todo from '../components/Todo.vue'
-
+import AddTodo from '../components/AddTodo.vue'
 export default {
-  components: { Navbar, Todo },
-  setup(props) {
+  components: { Navbar, Todo, AddTodo },
+  setup() {
     const todos = ref([
       {
         id: 1,
@@ -34,9 +37,9 @@ export default {
         completed: false
       }
     ])
-    function handleToogle(value) {
-      let index = todos.value.findIndex((t) => t.id.toString() === value.toString())
-      todos.value[index]['completed'] = true
+    function handleToogle(todo) {
+        todo.completed = !todo.completed
+        console.log(todo);
     }
 
 
