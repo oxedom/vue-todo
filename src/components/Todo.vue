@@ -1,11 +1,11 @@
 <template lang="">
-  <section @click="handleClick" :class="[completed.value ? 'bg-green-500' : 'bg-red-500']">
+  <section @click="handleClick()" :class="[completed ? 'bg-green-500' : 'bg-red-500']">
     <h3 class="text-2xl text-center">{{ title }}</h3>
     <p>{{ text }}</p>
   </section>
 </template>
 <script>
-import { ref, getCurrentInstance, onUpdated } from 'vue'
+import { ref, getCurrentInstance , onUpdated} from 'vue'
 
 export default {
   props: ['todo'],
@@ -14,13 +14,15 @@ export default {
     const instance = getCurrentInstance()
     const completed = ref(props.todo.completed)
     function handleClick(e) {
-      instance.emit('completed-toogle', props.todo)
+      instance.emit('completed-toogle', id)
     }
 
 
 
     return { id, title, completed, text, handleClick }
-  }
+  }, 
+  
+
 }
 </script>
 <style lang=""></style>

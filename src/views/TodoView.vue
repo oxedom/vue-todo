@@ -5,7 +5,7 @@
     <AddTodo/>
     <main v-for="todo in todos" class="grid grid-cols-3 justify-items-center">
         
-      <Todo @completed-toogle="handleToogle" :key="todo.id" v-bind="{ todo }" />
+      <Todo @completed-toogle="handleToogle(todo)" :key="todo.id" v-bind="{ todo }" />
     </main>
   </div>
 </template>
@@ -38,8 +38,8 @@ export default {
       }
     ])
     function handleToogle(todo) {
-        todo.completed = !todo.completed
-        console.log(todo);
+        let index  = todos.value.findIndex((t) => t.id == todo.id)
+        todos.value[index]['completed'] = !todo.completed
     }
 
 
