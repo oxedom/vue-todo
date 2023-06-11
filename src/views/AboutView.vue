@@ -1,19 +1,15 @@
 <template lang="">
   <div>
-    
-    <Navbar/>
+    <Navbar />
     <main class="flex justify-center mb-2">
-      <p> VUE-TODO is my first VUE-PROJECT </p>
-
+      <p>VUE-TODO is my first VUE-PROJECT</p>
     </main>
   </div>
 </template>
 <script>
-import Navbar from '../components/Navbar.vue';
+import Navbar from '../components/Navbar.vue'
 export default {
-  components: {Navbar}
+  components: { Navbar }
 }
 </script>
-<style>
-  
-</style>
+<style></style>
